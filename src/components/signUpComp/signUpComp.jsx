@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import {
   createAuthUserWithEmailAndPassword,
   createUserDocumentFromAuth,
@@ -28,8 +28,9 @@ function SignUpForm() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    console.log(formFields);
 
-    if (password != confirmPassword) {
+    if (password !== confirmPassword) {
       alert("Password do not match");
       return;
     }
@@ -39,14 +40,15 @@ function SignUpForm() {
         email,
         password
       );
-      console.log(user);
       await createUserDocumentFromAuth(user);
       resetFormFields();
       console.log("Creation Successfull");
     } catch (error) {
       if (error.code === "auth/email-already-in-use")
         alert("Cannot create a duplicate account, Account already exist");
-      else console.log("User creation encountered an error");
+      else {
+        console.log("User creation encountered an error", error);
+      }
     }
   };
 
@@ -58,7 +60,7 @@ function SignUpForm() {
         <FormInput
           label="Display Name"
           type="text"
-          nChange={handleChange}
+          onChange={handleChange}
           name="displayName"
           value={displayName}
           required

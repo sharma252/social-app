@@ -4,7 +4,7 @@ import "./formInput.styles.scss";
 export default function FormInput({ label, ...otherProps }) {
   return (
     <div className="group">
-      <input className="form-input {...otherProps}" />
+      <input className="form-input" {...otherProps} />
       {label && (
         <label
           className={`${

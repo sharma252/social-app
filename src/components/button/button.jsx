@@ -6,7 +6,7 @@ const BUTTON_TYPE_CLASSES = {
   inverted: "inverted",
 };
 
-export default function button({ children, buttonType, ...otherProps }) {
+export default function Button({ children, buttonType, ...otherProps }) {
   return (
     <button
       className={`button-container ${BUTTON_TYPE_CLASSES[buttonType]}`}

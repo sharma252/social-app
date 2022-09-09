@@ -3,10 +3,12 @@ import FormInput from "../formInput/formInput";
 import Button from "../button/button";
 import {
   signInWithGooglePopup,
-  createUserDocumentFromAuth,
   signInAuthUserWithEmailAndPassword,
+  createUserDocumentFromAuth,
 } from "../utils/firebase";
 import "./signIn.style.scss";
+import { UserContext } from "../../contexts/user_context";
+import { useContext } from "react";
 
 const defaultFormField = {
   email: "",
@@ -23,36 +25,24 @@ export default function SignInComp() {
 
   const signInWithGoogle = async () => {
     const { user } = await signInWithGooglePopup();
-    const userDocRef = createUserDocumentFromAuth(user);
   };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
 
     try {
-      const response = await signInAuthUserWithEmailAndPassword(
+      const { user } = await signInAuthUserWithEmailAndPassword(
         email,
         password
       );
-      console.log(response);
       resetFormField();
     } catch (error) {
-      switch (error.code) {
-        case "auth/wrong-password":
-          alert("Incorrect Password for Email");
-          break;
-        case "auth/user-not-found":
-          alert("No user associated with this Email");
-          break;
-        default:
-          console.log(error);
-      }
+      console.log("User Sign In Falied");
     }
   };
 
   const handleChange = (event) => {
     const { name, value } = event.target;
-
     setFormField({ ...formField, [name]: value });
   };
 
