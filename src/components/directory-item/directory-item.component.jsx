@@ -1,17 +1,26 @@
-import "./directory-item.styles.scss";
+import {
+  BackgroundImage,
+  Body,
+  DirectoryItemContainer,
+} from "./directory-item.styles.jsx";
+import { useNavigate } from "react-router-dom";
 
 function DirectoryItem({ product }) {
+  const { route } = product;
+  const navigate = useNavigate();
+
+  const onNavigateHandler = () => navigate(route);
+
   return (
-    <div className="directory-item-container">
-      <div
-        className="background-image"
+    <DirectoryItemContainer onClick={onNavigateHandler}>
+      <BackgroundImage
         style={{ backgroundImage: `url(${product.imageUrl})` }}
       />
-      <div className="body">
+      <Body>
         <h2>{product.title}</h2>
         <p>Show Now</p>
-      </div>
-    </div>
+      </Body>
+    </DirectoryItemContainer>
   );
 }
 
