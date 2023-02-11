@@ -1,5 +1,6 @@
 import Post from "../post/Post";
 import "./feed.css";
+import { Posts } from "../../dummyData";
 import Share from "./share/Share";
 
 export default function Feed() {
@@ -7,14 +8,9 @@ export default function Feed() {
     <div className="feed">
       <div className="feedwrapper">
         <Share />
-        <Post />
-        <Post />
-        <Post />
-        <Post />
-        <Post />
-        <Post />
-        <Post />
-        <Post />
+        {Posts.map((post) => {
+          return <Post key={post.id} post={post} />;
+        })}
       </div>
     </div>
   );

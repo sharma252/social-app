@@ -4,7 +4,7 @@ import "./share.css";
 export default function Share() {
   return (
     <div className="share">
-      <div className="sharewrapper">
+      <div className="shareWrapper">
         <div className="shareTop">
           <img
             src="/assets/person/babu.jpg"

@@ -63,6 +63,7 @@
 .shareOptionText {
   font-size: 16px;
   font-weight: 500;
+  cursor: pointer;
 }
 
 .shareButton {
@@ -73,4 +74,9 @@
   background-color: lightskyblue;
   font-weight: 500;
   cursor: pointer;
+}
+
+.shareButton:hover {
+  transition-delay: 0.4ms;
+  background-color: lightgreen;
 }
